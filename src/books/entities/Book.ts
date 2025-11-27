@@ -1,4 +1,3 @@
-import { IsInt } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -13,6 +12,5 @@ export class Book {
   author: string;
 
   @Column({ nullable: false })
-  @IsInt()
   publishedYear: number;
 }
