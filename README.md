@@ -1,3 +1,5 @@
+[![NestJS Test CI](https://github.com/dmitrijLo/book-api-nestjs-practice/actions/workflows/ci.yml/badge.svg)](https://github.com/dmitrijLo/book-api-nestjs-practice/actions/workflows/ci.yml)
+
 # 📚 NestJS Books API (Learning Project)
 
 Eine RESTful API zur Verwaltung von Büchern, entwickelt mit dem **Nest.js** Framework.
