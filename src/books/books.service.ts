@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookEntity } from './entities/book.entity';
 import { Repository } from 'typeorm';
@@ -14,8 +18,10 @@ export class BooksService {
     return this.bookRepo.find();
   }
 
-  getBookById(id: string): Promise<BookEntity | null> {
-    return this.bookRepo.findOne({ where: { id } });
+  async getBookById(id: string): Promise<BookEntity | null> {
+    const book = await this.bookRepo.findOne({ where: { id } });
+    if (!book) throw new NotFoundException(`Book with id ${id} not found`);
+    return book;
   }
 
   createBook(newBook: BookInputDto): Promise<BookEntity> {
@@ -25,13 +31,18 @@ export class BooksService {
 
   async updateBook(
     id: string,
-    bookFieldsToUpdate: Partial<BookEntity>,
+    bookFieldsToUpdate: Partial<Omit<BookEntity, 'id'>>,
   ): Promise<BookEntity | null> {
+    if (!Object.values(bookFieldsToUpdate).some((val) => !!val)) {
+      throw new BadRequestException('Body must not be empty');
+    }
+
     await this.bookRepo.update(id, bookFieldsToUpdate);
     return this.getBookById(id);
   }
 
   async deleteBook(id: string) {
-    await this.bookRepo.delete(id);
+    const { affected } = await this.bookRepo.delete(id);
+    if (!affected) throw new NotFoundException(`Book with id ${id} not found`);
   }
 }
