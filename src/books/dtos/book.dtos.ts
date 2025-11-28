@@ -1,8 +1,8 @@
 import { Expose } from 'class-transformer';
-import { Book } from '../entities/Book';
+import { BookEntity } from '../entities/book.entity';
 import { IsInt, IsNotEmpty, IsString, Max } from 'class-validator';
 
-export class BookInputDto implements Omit<Book, 'id'> {
+export class BookInputDto implements Omit<BookEntity, 'id'> {
   @Expose()
   @IsString()
   @IsNotEmpty()
