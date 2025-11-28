@@ -71,13 +71,14 @@ describe('BooksController (e2e)', () => {
   });
 
   it('/books (POST) should create a new book and return it', async () => {
-    const response = await request(app.getHttpServer())
+    const { body: bookResponse } = (await request(app.getHttpServer())
       .post('/books')
       .send(testBook)
-      .expect(201);
+      .expect(201)) as { body: BookEntity };
 
-    expect(response.body).toEqual(expect.objectContaining(testBook));
-    expect(response.body.id).toBeDefined();
+    // const bookResponse = response.body as BookEntity;
+    expect(bookResponse).toEqual(expect.objectContaining(testBook));
+    expect(bookResponse.id).toBeDefined();
   });
 
   it('/books (POST) should return 400 if title is missing', async () => {

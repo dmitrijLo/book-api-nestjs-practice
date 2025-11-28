@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 import { BookEntity } from '../entities/book.entity';
-import { IsInt, IsNotEmpty, IsOptional, IsString, Max } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, Max } from 'class-validator';
 import { PartialType } from '@nestjs/swagger';
 export class BookInputDto implements Omit<BookEntity, 'id'> {
   @Expose()
