@@ -36,7 +36,7 @@ Das Ziel war eine hohe Code-Qualität und Sicherheit bei Refactorings.
 # Installation & Setup
 
 ```bash
-git clone [https://github.com/DEIN-USER/books-api-practice.git](https://github.com/DEIN-USER/books-api.git)
+git clone [https://github.com/dmitrijLo/book-api-nestjs-practice](https://github.com/dmitrijLo/book-api-nestjs-practice)
 
 cd books-api-practice
 
