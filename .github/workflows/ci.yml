@@ -1,9 +1,8 @@
-name: NestJS Test CI
+name: NestJS Book API CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
 
 jobs:
